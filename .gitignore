@@ -1,1 +1,7 @@
 repo_info.txt
+
+x64/
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
