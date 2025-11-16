@@ -1,0 +1,44 @@
+M
+N
+K
+L
+T
+Q
+theta[1], theta[2], ..., theta[Q]
+d[1], d[2], ..., d[N]
+alpha[1][1], alpha[1][2], ..., alpha[1][K]
+alpha[2][1], alpha[2][2], ..., alpha[2][K]
+...
+alpha[N][1], alpha[N][2], ..., alpha[N][K]
+tau[1], tau[2], ..., tau[N]
+beta[1][1], beta[1][2], ..., beta[1][T]
+beta[2][1], beta[2][2], ..., beta[2][T]
+...
+beta[M][1], beta[M][2], ..., beta[M][T]
+rho_k[1][1], rho_k[1][2], ..., rho_k[1][K]
+rho_k[2][1], rho_k[2][2], ..., rho_k[2][K]
+...
+rho_k[M][1], rho_k[M][2], ..., rho_k[M][K]
+rho[1], rho[2], ..., rho[M]
+
+gamma[1][1][1], gamma[1][2][1], ..., gamma[1][K][1]
+gamma[2][1][1], gamma[2][2][1], ..., gamma[2][K][1]
+...
+gamma[M][1][1], gamma[M][2][1], ..., gamma[M][K][2]
+
+gamma[1][1][2], gamma[1][2][2], ..., gamma[1][K][2]
+gamma[2][1][2], gamma[2][2][2], ..., gamma[2][K][2]
+...
+gamma[M][1][2], gamma[M][2][2], ..., gamma[M][K][2]
+
+...
+
+gamma[1][1][Q], gamma[1][2][Q], ..., gamma[1][K][Q]
+gamma[2][1][Q], gamma[2][2][Q], ..., gamma[2][K][Q]
+...
+gamma[M][1][Q], gamma[M][2][Q], ..., gamma[M][K][Q]
+
+rho_[1][1], rho[1][2], ..., rho[1][Q]
+rho_[2][1], rho[2][2], ..., rho[2][Q]
+...
+rho_[M][1], rho[M][2], ..., rho[M][Q]
