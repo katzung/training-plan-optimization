@@ -1,0 +1,311 @@
+md5-hash: ac17abd7c3e3de920ecb4ded52e3e3a2 # computed for the text below
+version: "0.3.1"
+author: "Мельников Андрей (ololobus@yandex.ru)"
+author_en: Andrey Melnikov
+title: Адаптированный стандарт НИИ ТУДА
+levels:
+- name: A0
+  conditions:
+- name: A1
+  conditions: 
+    - label: movement_a1_1
+      essence: Двигательные навыки и видение поля / Ускорение с места вперед, в стороны и назад
+      type: interval
+      lb: 2
+    - label: movement_a1_2
+      essence: Двигательные навыки и видение поля / Остановка мелкими шагами
+      type: interval
+      lb: 2
+    - label: movement_a1_3
+      essence: Двигательные навыки и видение поля / Ловля диска, летящего на уровне туловища, стоя и в движении, одной и двумя руками
+      type: interval
+      lb: 2
+    - label: movement_a1_4
+      essence: Двигательные навыки и видение поля / Смена хвата между форхендом и бэкхендом
+      type: interval
+      lb: 2
+    - label: movement_a1_5
+      essence: Двигательные навыки и видение поля / Реакция
+      type: interval
+      lb: 2
+    - label: throw_a1_1
+      essence: Броски / Форхенд на 5 м сильной рукой
+      type: interval
+      lb: 8
+    - label: throw_a1_2
+      essence: Броски / Кистевой бэкхенд на 3 м сильной рукой
+      type: interval
+      lb: 8
+    - label: throw_a1_3
+      essence: Броски / Бэкхенд на 5 м сильной рукой
+      type: interval
+      lb: 8
+    - label: inventory_a1_1
+      essence: Инвентарь / Бутылочка для воды
+      type: binary
+    - label: team_a1_1
+      essence: Команда / В командном чате
+      type: binary
+    - label: team_a1_2
+      essence: Команда / В командной группе в соцсети
+      type: binary
+- name: A2
+  conditions:
+    - label: movement_a2_1
+      essence: Двигательные навыки и видение поля / Движение приставным шагом
+      type: interval
+      lb: 2
+    - label: movement_a2_2
+      essence: Двигательные навыки и видение поля / Смена направления движения
+      type: interval
+      lb: 2
+    - label: movement_a2_3
+      essence: Двигательные навыки и видение поля / Упражнения на координационной лестнице
+      type: interval
+      lb: 2
+    - label: movement_a2_4
+      essence: Двигательные навыки и видение поля / Выполнение профилактических упражнений
+      type: interval
+      lb: 2
+    - label: throw_a2_1
+      essence: Броски / Скубер на 5 м слабой рукой
+      type: interval
+      lb: 7
+    - label: throw_a2_2
+      essence: Броски / Скубер на 5 м сильной рукой
+      type: interval
+      lb: 7
+    - label: throw_a2_3
+      essence: Броски / Кистевой бэкхенд на 3 м слабой рукой
+      type: interval
+      lb: 7
+    - label: throw_a2_4
+      essence: Броски / Бэкхенд на 5 м слабой рукой
+      type: interval
+      lb: 7
+    - label: tactics_a2_1
+      essence: Тактика / Зоны на игровом поле
+      type: binary
+    - label: tactics_a2_2
+      essence: Тактика / Роли игроков в атаке и защите
+      type: binary
+    - label: tactics_a2_3
+      essence: Тактика / Вертикальный стек
+      type: binary
+    - label: tactics_a2_4
+      essence: Тактика / Принципы личной защиты
+      type: binary
+    - label: inventory_a2_1
+      essence: Инвентарь / Темная и светлая спортивные майки
+      type: binary
+    - label: team_a2_1
+      essence: Команда / Участие в командной вечеринке
+      type: binary
+- name: B1
+  conditions:
+    - label: movement_b2_1
+      essence: Двигательные навыки и видение поля / Выполнение специальных беговых упражнений
+      type: interval
+      lb: 2
+    - label: movement_b1_2
+      essence: Двигательные навыки и видение поля / Обманные движения при смене направления
+      type: interval
+      lb: 2
+    - label: movement_b1_3
+      essence: Двигательные навыки и видение поля / Стандартные способы открытия в нападении
+      type: interval
+      lb: 2
+    - label: movement_b1_4
+      essence: Двигательные навыки и видение поля / Передача диска в паре
+      type: interval
+      lb: 2
+    - label: movement_b1_5
+      essence: Двигательные навыки и видение поля / Ловля верхних бросков одной рукой
+      type: interval
+      lb: 2
+    - label: throw_b1_1
+      essence: Броски / Форхенд на 10 м сильной рукой с контролем траектории (прямой, I-O, O-I)
+      type: interval
+      lb: 7
+    - label: throw_b1_2
+      essence: Броски / Бэкхенд на 10 м сильной рукой с контролем траектории (прямой, I-O, O-I)
+      type: interval
+      lb: 7
+    - label: throw_b1_3
+      essence: Броски / Хаммер на 5 м слабой рукой
+      type: interval
+      lb: 7
+    - label: throw_b1_4
+      essence: Броски / Хаммер на 5 м сильной рукой
+      type: interval
+      lb: 7
+    - label: throw_b1_5
+      essence: Броски / Блейд на 5 м сильной рукой
+      type: interval
+      lb: 7
+    - label: tactics_b1_1
+      essence: Тактика / Горизонтальный стэк
+      type: binary
+    - label: tactics_b1_2
+      essence: Тактика / Диагональный стэк
+      type: binary
+    - label: tactics_b1_3
+      essence: Тактика / Разделенный стэк
+      type: binary
+    - label: tactics_b1_4
+      essence: Тактика / Смена и подстраховка в личной защите
+      type: binary
+    - label: experience_b1_1
+      essence: Игровой опыт / Участие в турнире
+      type: binary
+    - label: spirit_b1_1
+      essence: Дух игры / Правила о счете задержки
+      type: binary
+    - label: spirit_b1_2
+      essence: Дух игры / Нарушения и несоблюдения маркера
+      type: binary
+    - label: spirit_b1_3
+      essence: Дух игры / Установка точки опоры
+      type: binary
+    - label: spirit_b1_4
+      essence: Дух игры / Жесты
+      type: binary
+    - label: spirit_b1_5
+      essence: "Дух игры / Сертификат WFDF: basic"
+      type: binary
+    - label: inventory_b1_1
+      essence: Инвентарь / Свой диск
+      type: binary
+    - label: inventory_b1_2
+      essence: Инвентарь / Баскетбольные или волейбольные кроссовки для зала
+      type: binary
+    - label: inventory_b1_3
+      essence: Инвентарь / Коврик для упражнений на полу
+      type: binary
+    - label: inventory_b1_4
+      essence: Инвентарь / Ролл для МФР
+      type: binary
+    - label: inventory_b1_5
+      essence: Инвентарь / Тактический блокнот с записями
+      type: binary
+- name: B2
+  conditions:
+    - label: movement_b2_1
+      essence: Двигательные навыки и видение поля / Блокирование траектории при личной опеке
+      type: interval
+      lb: 2
+    - label: movement_b2_2
+      essence: Двигательные навыки и видение поля / Смена и подстраховка при личной опеке
+      type: interval
+      lb: 2
+    - label: movement_b2_3
+      essence: Двигательные навыки и видение поля / Позиционная (зонная) защита
+      type: interval
+      lb: 2
+    - label: throw_b2_1
+      essence: Броски / Скубер на 10 м сильной рукой
+      type: interval
+      lb: 7
+    - label: throw_b2_2
+      essence: Броски / Блейд на 10 м сильной рукой
+      type: interval
+      lb: 7
+    - label: throw_b2_3
+      essence: Броски / Хаммер на 10 м сильной рукой
+      type: interval
+      lb: 7
+    - label: throw_b2_4
+      essence: Броски / Форхенд и бэкхенд на 25 м с широким вышагиванием
+      type: interval
+      lb: 7
+    - label: throw_b2_5
+      essence: Броски / Хаммер, блейд и скубер на 25 м
+      type: interval
+      lb: 7
+    - label: tactics_b2_1
+      essence: Тактика / Атака и защита вблизи голевой зоны
+      type: binary
+    - label: tactics_b2_2
+      essence: Тактика / Стандартные схемы позиционной защиты
+      type: binary
+    - label: experience_b2_1
+      essence: Игровой опыт / Участие в трех турнирах, один из которых шляпный или пикапом за другую команду
+      type: binary
+    - label: spirit_b2_1
+      essence: Дух игры / Ввод диска в игру и брик
+      type: binary
+    - label: spirit_b2_2
+      essence: Дух игры / Пробежка
+      type: binary
+    - label: spirit_b2_3
+      essence: Дух игры / Фол и стрип
+      type: binary
+    - label: spirit_b2_4
+      essence: Дух игры / Игра в роли игрового советника (game advisor)
+      type: binary
+    - label: spirit_b2_5
+      essence: "Дух игры / Сертификат WFDF: advanced"
+      type: binary
+    - label: inventory_b2_1
+      essence: Инвентарь / Комплект темной и светлой командной формы
+      type: binary
+    - label: team_b2_1
+      essence: Команда / Страничка игрока на 175g.ru
+      type: binary
+- name: C1
+  conditions:
+    - label: throw_c1_1
+      essence: Броски / Форхенд и бэкхенд на 50 м
+      type: interval
+      lb: 7
+    - label: throw_c1_2
+      essence: Броски / Форхенд и бэкхенд на 25 м с широким вышагиванием
+      type: interval
+      lb: 7
+    - label: throw_c1_3
+      essence: Броски / Хаммер, блейд и скубер на 25 м
+      type: interval
+      lb: 7
+    - label: experience_c1_1
+      essence: Игровой опыт / Один турнир в роли капитана
+      type: binary
+    - label: spirit_c1_1
+      essence: Дух игры / Три турнира со средней оценкой за Дух не ниже 10.0
+      type: binary
+    - label: inventory_c1_1
+      essence: Инвентарь / Координационная лестница
+      type: binary
+    - label: inventory_c1_2
+      essence: Инвентарь / Мяч для развития реакции
+      type: binary
+    - label: inventory_c1_3
+      essence: Инвентарь / Спортивное питание
+      type: binary
+    - label: team_c1_1
+      essence: Команда / Участие в командном мероприятии по развитию
+      type: binary
+    - label: team_c1_2
+      essence: Команда / Тренировка по ОФП или разминка для команды
+      type: binary
+- name: C2
+  conditions:
+    - label: throw_c2_1
+      essence: Броски / Перевернутый бэкхенд на 25 м
+      type: interval
+      lb: 7
+    - label: throw_c2_2
+      essence: Броски / Обводной бэкхенд на 25 м
+      type: interval
+      lb: 7
+    - label: spirit_c2_1
+      essence: Дух игры / Актуальные трактовки правил (official annotations)
+      type: binary
+    - label: spirit_c2_2
+      essence: Дух игры / Диаграммы принятия решений в зале и на улице
+      type: binary
+    - label: team_c2_1
+      essence: Команда / Мини-проект для развития команды
+      type: binary
+    - label: team_c2_2
+      essence: Команда / Кураторство над новичком
+      type: binary
