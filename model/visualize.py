@@ -3,7 +3,7 @@ Interactive 3D Pareto front visualizer.
 
 Usage:
     python3 visualize.py <path_to_viz_data.txt>
-    python3 visualize.py                         # auto-searches results/ for *_viz_data.txt
+    python3 visualize.py                         # auto-searches results/ for merged or *_viz_data.txt
 
 Requirements:
     pip install plotly
@@ -42,12 +42,16 @@ def load_viz_data(path: str):
                     "A_norm": float(parts[7]),
                     "B_norm": float(parts[8]),
                     "C_norm": float(parts[9]),
+                    "source": parts[10].strip() if len(parts) > 10 else "default",
                 })
     return ideal, solutions
 
 
 def find_data_file() -> str:
-    """Auto-locate the most recently modified *_viz_data.txt in results/."""
+    """Auto-locate a viz data file in results/: prefer merged, then most recent."""
+    merged = glob.glob("results/merged_viz_data.txt")
+    if merged:
+        return merged[0]
     candidates = glob.glob("results/*_viz_data.txt")
     if not candidates:
         sys.exit("No *_viz_data.txt found in results/. "
@@ -81,6 +85,14 @@ def _hover_norm(s):
     )
 
 
+# ── Color palette ─────────────────────────────────────────────────────────────
+
+_COLORS = [
+    "royalblue", "orangered", "seagreen", "darkorchid", "goldenrod",
+    "deeppink",  "darkcyan",  "saddlebrown", "slategray", "limegreen",
+]
+
+
 # ── Plot builder ──────────────────────────────────────────────────────────────
 
 def build_figure(ideal, solutions):
@@ -98,21 +110,43 @@ def build_figure(ideal, solutions):
         zerolinecolor="white",
     )
 
-    # ── Raw values ─────────────────────────────────────────────────────────
-    A_vals = [s["A"] for s in solutions]
-    B_vals = [s["B"] for s in solutions]
-    C_vals = [s["C"] for s in solutions]
+    # Group solutions by source, preserving insertion order
+    sources = list(dict.fromkeys(s["source"] for s in solutions))
+    color_map = {src: _COLORS[i % len(_COLORS)] for i, src in enumerate(sources)}
 
-    fig.add_trace(go.Scatter3d(
-        x=A_vals, y=B_vals, z=C_vals,
-        mode="markers",
-        marker=dict(color="royalblue", size=8, opacity=0.85,
-                    line=dict(color="white", width=1)),
-        name="Solutions",
-        hovertemplate="%{customdata}<extra></extra>",
-        customdata=[_hover(s) for s in solutions],
-    ), row=1, col=1)
+    for src in sources:
+        src_sols = [s for s in solutions if s["source"] == src]
+        color = color_map[src]
 
+        # ── Raw values ─────────────────────────────────────────────────────
+        fig.add_trace(go.Scatter3d(
+            x=[s["A"] for s in src_sols],
+            y=[s["B"] for s in src_sols],
+            z=[s["C"] for s in src_sols],
+            mode="markers",
+            marker=dict(color=color, size=8, opacity=0.85,
+                        line=dict(color="white", width=1)),
+            name=src,
+            hovertemplate="%{customdata}<extra></extra>",
+            customdata=[_hover(s) for s in src_sols],
+        ), row=1, col=1)
+
+        # ── Normalized values ──────────────────────────────────────────────
+        fig.add_trace(go.Scatter3d(
+            x=[s["A_norm"] for s in src_sols],
+            y=[s["B_norm"] for s in src_sols],
+            z=[s["C_norm"] for s in src_sols],
+            mode="markers",
+            marker=dict(color=color, size=8, opacity=0.85,
+                        line=dict(color="white", width=1)),
+            name=src + " (norm)",
+            showlegend=False,
+            hovertemplate="%{customdata}<extra></extra>",
+            customdata=[_hover_norm(s) for s in src_sols],
+            scene="scene2",
+        ))
+
+    # ── Ideal point (raw) ──────────────────────────────────────────────────
     fig.add_trace(go.Scatter3d(
         x=[ideal[0]], y=[ideal[1]], z=[ideal[2]],
         mode="markers+text",
@@ -127,23 +161,7 @@ def build_figure(ideal, solutions):
         ),
     ), row=1, col=1)
 
-    # ── Normalized values ──────────────────────────────────────────────────
-    An_vals = [s["A_norm"] for s in solutions]
-    Bn_vals = [s["B_norm"] for s in solutions]
-    Cn_vals = [s["C_norm"] for s in solutions]
-
-    fig.add_trace(go.Scatter3d(
-        x=An_vals, y=Bn_vals, z=Cn_vals,
-        mode="markers",
-        marker=dict(color="royalblue", size=8, opacity=0.85,
-                    line=dict(color="white", width=1)),
-        name="Solutions (norm)",
-        showlegend=False,
-        hovertemplate="%{customdata}<extra></extra>",
-        customdata=[_hover_norm(s) for s in solutions],
-        scene="scene2",
-    ))
-
+    # ── Ideal point (normalized) ───────────────────────────────────────────
     fig.add_trace(go.Scatter3d(
         x=[1.0], y=[1.0], z=[1.0],
         mode="markers+text",
@@ -157,7 +175,7 @@ def build_figure(ideal, solutions):
         scene="scene2",
     ))
 
-    # ── Layout: explicit axis ranges to handle tightly-clustered data ──────
+    # ── Layout ─────────────────────────────────────────────────────────────
     fig.update_layout(
         title=dict(text="Multi-Criteria Optimization — Pareto Front",
                    font=dict(size=20), x=0.5),
@@ -167,12 +185,9 @@ def build_figure(ideal, solutions):
             zaxis=dict(**scene_axes, title="C (team tactics)"),
         ),
         scene2=dict(
-            xaxis=dict(**scene_axes, title="A / A*",
-                       range=axis_range(An_vals + [1.0])),
-            yaxis=dict(**scene_axes, title="B / B*",
-                       range=axis_range(Bn_vals + [1.0])),
-            zaxis=dict(**scene_axes, title="C / C*",
-                       range=axis_range(Cn_vals + [1.0])),
+            xaxis=dict(**scene_axes, title="A / A*", range=[0.0, 1.0]),
+            yaxis=dict(**scene_axes, title="B / B*", range=[0.0, 1.0]),
+            zaxis=dict(**scene_axes, title="C / C*", range=[0.0, 1.0]),
             aspectmode="cube",
         ),
         legend=dict(x=0.01, y=0.99, bgcolor="rgba(255,255,255,0.7)",
@@ -205,8 +220,13 @@ def main():
     print(f"  Ideal point : A={ideal[0]:.4f}  B={ideal[1]:.4f}  C={ideal[2]:.4f}")
     print(f"  Solutions   : {len(solutions)}")
 
+    sources = list(dict.fromkeys(s["source"] for s in solutions))
+    for src in sources:
+        n = sum(1 for s in solutions if s["source"] == src)
+        print(f"  Source '{src}': {n} solutions")
+
     for i, s in enumerate(solutions):
-        print(f"  Solution {i+1} : "
+        print(f"  Solution {i+1} [{s['source']}]: "
               f"A={s['A']:.4f} B={s['B']:.4f} C={s['C']:.4f} | "
               f"A_norm={s['A_norm']:.4f} B_norm={s['B_norm']:.4f} C_norm={s['C_norm']:.4f}")
 
